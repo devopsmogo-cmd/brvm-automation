@@ -1,0 +1,352 @@
+{
+  "2026-07-17": {
+    "date": "2026-07-17",
+    "jour": "vendredi",
+    "themes_generaux": [
+      {
+        "titre": "Secteur Bancaire en Hausse - Liquidité Saine",
+        "description": "Excellente liquidité du marché interbancaire observée cette semaine. Les institutions financières rapportent des flux positifs et une bonne stabilité des dépôts malgré les tensions régionales.",
+        "source": "BRVM.org, 17/07",
+        "lien": "https://www.brvm.org",
+        "impact": "positif",
+        "secteurs_affectes": ["Banques"],
+        "actions_concernees": ["BICB", "SICC", "BICC", "NSBC", "BOAB"]
+      }
+    ],
+    "decisions_gouvernementales": [
+      {
+        "titre": "Mesures Incitatives pour l'Investissement Long Terme",
+        "description": "Annonce du gouvernement ivoirien de réductions d'impôts sur les dividendes et les plus-values pour les investissements supérieurs à 5 ans. Cet incentive vise à encourager l'épargne productive et la stabilisation du marché boursier.",
+        "source": "Abidjan.net, 15/07",
+        "lien": "https://www.abidjan.net",
+        "impact": "positif",
+        "secteurs_affectes": ["Tous les secteurs"],
+        "actions_concernees": ["BICB", "NSBC", "SICC", "ECOC"]
+      }
+    ],
+    "contexte_economique": [
+      {
+        "titre": "Croissance PIB Côte d'Ivoire Révisée à la Hausse",
+        "description": "Les prévisions de croissance pour 2026 ont été revues à +4.5% contre 3.8% précédemment. Le secteur agricole (+6.2%) et les services (telcoms, finance) (+3.5%) tirent la croissance. Impact positif sur la consommation et les investissements.",
+        "source": "Jeune Afrique, 16/07",
+        "lien": "https://www.jeuneafrique.com",
+        "impact": "positif",
+        "secteurs_affectes": ["Énergie", "Industrie", "Banques", "Telecoms"],
+        "actions_concernees": ["ECOC", "ETIT", "BICB", "UNLC"]
+      }
+    ],
+    "actualites_sectorielles": [
+      {
+        "titre": "Tensions Réglementaires dans le Secteur Télécoms",
+        "description": "Le gouvernement propose une augmentation de 2% des taxes sur les services de télécommunications. Cette mesure, bien que modérée, impacte les marges des opérateurs majeurs. Les débats parlementaires sont en cours pour une mise en application Q3 2026.",
+        "source": "Financial Afrik, 17/07",
+        "lien": "https://www.financialafrik.com",
+        "impact": "negatif",
+        "secteurs_affectes": ["Telecoms"],
+        "actions_concernees": ["UNLC", "ORGT", "SNTS", "CIEC"]
+      },
+      {
+        "titre": "Appels d'Offres Importants en Énergie Renouvelable",
+        "description": "La SONABEL et les autorités lancent des appels d'offres pour des projets d'énergie renouvelable (150 MW). Opportunité majeure pour les fournisseurs d'équipements et les opérateurs intégrés. Horizon: Contrats signés avant fin 2026.",
+        "source": "BRVM.org & Sika Finance, 17/07",
+        "lien": "https://www.sikafinance.com",
+        "impact": "positif",
+        "secteurs_affectes": ["Énergie"],
+        "actions_concernees": ["ECOC"]
+      }
+    ],
+    "analyses_specifiques": {
+      "BICB": {
+        "raison": "Dividende régulier 5.45% + contexte économique favorable",
+        "justification": "Secteur bancaire en hausse suite aux mesures gouvernementales incitatives (Abidjan.net, 15/07). Croissance PIB revue à la hausse favorise l'activité bancaire (+4.5%). Liquidité interbancaire saine (BRVM.org, 17/07).",
+        "conseil": "À ACHETER - DCA recommandée",
+        "risque": "Faible"
+      },
+      "ECOC": {
+        "raison": "Secteur énergie en croissance + opportunités contrats",
+        "justification": "Appels d'offres importants lancés pour projets renouvelables (+150 MW) créant des opportunités de croissance (Sika Finance, 17/07). Contexte économique favorable avec révision PIB à la hausse (+4.5%). Alignement avec engagements climat régionaux.",
+        "conseil": "À ACHETER - Potentiel long terme",
+        "risque": "Modéré"
+      },
+      "UNLC": {
+        "raison": "Volatilité extrême suite annonces réglementaires",
+        "justification": "Nouvelles taxes télécoms (+2%) impactent directement les marges d'UNLC leader du secteur (Financial Afrik, 17/07). Tensions réglementaires croissantes et débats parlementaires continuent. Volatilité historique du titre accentue l'impact.",
+        "conseil": "À ÉVITER - Court terme recommandé",
+        "risque": "Très élevé"
+      },
+      "SICC": {
+        "raison": "Dividende régulier 4.35% + secteur stable",
+        "justification": "Banque régionale bénéficiaire des mesures incitatives (Abidjan.net, 15/07). Position de force dans l'ouest ivoirien. Historique de dividendes réguliers sur 3+ ans malgré crises.",
+        "conseil": "À ACHETER - Valeur refuge",
+        "risque": "Faible"
+      },
+      "ORGT": {
+        "raison": "Secteur télécoms sous pression réglementaire",
+        "justification": "Impact des nouvelles taxes télécoms (+2%) affecte tous les opérateurs du secteur (Financial Afrik, 17/07). ORGT taille moyenne, donc sensibilité élevée aux coûts fixes. À surveiller avant implémentation fiscale.",
+        "conseil": "À SURVEILLER - Avant achat",
+        "risque": "Modéré à Élevé"
+      }
+    }
+  },
+  "2026-07-20": {
+    "date": "2026-07-20",
+    "jour": "lundi",
+    "themes_generaux": [
+      {
+        "titre": "Dynamique Positive Après Annonces Gouvernementales",
+        "description": "Suite aux mesures incitatives du vendredi, le marché ouvre en hausse. Les investisseurs réagissent positivement aux réductions fiscales et au contexte de croissance révisé à la hausse.",
+        "source": "BRVM.org, 20/07",
+        "lien": "https://www.brvm.org",
+        "impact": "positif",
+        "secteurs_affectes": ["Tous les secteurs"],
+        "actions_concernees": ["BICB", "SICC", "NSBC", "BICC", "ECOC"]
+      }
+    ],
+    "decisions_gouvernementales": [],
+    "contexte_economique": [
+      {
+        "titre": "Confiance Investisseurs en Hausse - Indices de Sentiment Positif",
+        "description": "Les indices de confiance des investisseurs pour l'Afrique de l'Ouest montent suite aux annonces gouvernementales. Fonds d'investissement africains signalent un intérêt accru pour les valeurs ivoiriennes.",
+        "source": "Jeune Afrique, 20/07",
+        "lien": "https://www.jeuneafrique.com",
+        "impact": "positif",
+        "secteurs_affectes": ["Tous les secteurs"],
+        "actions_concernees": ["BICB", "SICC", "ECOC"]
+      }
+    ],
+    "actualites_sectorielles": [
+      {
+        "titre": "Secteur Industriel Stimulé par Croissance Prévue",
+        "description": "La révision à la hausse du PIB (+4.5%) stimule les secteurs industriels. Demandes anticipées pour biens de consommation et équipements. Commentaires positifs de fournisseurs majeurs.",
+        "source": "Financial Afrik, 20/07",
+        "lien": "https://www.financialafrik.com",
+        "impact": "positif",
+        "secteurs_affectes": ["Industrie"],
+        "actions_concernees": ["ETIT"]
+      }
+    ],
+    "analyses_specifiques": {
+      "BICB": {
+        "raison": "Momentum haussier maintenu + dividende attrayant",
+        "justification": "Rebond du marché confirmé suite mesures gouvernementales (Abidjan.net). Secteur bancaire en tête des gains. Rendement 5.34% reste parmi les meilleurs du marché.",
+        "conseil": "À ACHETER - Maintenir position",
+        "risque": "Faible"
+      },
+      "ETIT": {
+        "raison": "Secteur industriel stimulé par croissance économique",
+        "justification": "Révision PIB à la hausse génère demandes industrielles accrues (Financial Afrik, 20/07). Perspectives d'équipements et biens de consommation favorables.",
+        "conseil": "À ACHETER - Potentiel croissance",
+        "risque": "Modéré"
+      }
+    }
+  },
+  "2026-07-21": {
+    "date": "2026-07-21",
+    "jour": "mardi",
+    "themes_generaux": [
+      {
+        "titre": "Consolidation des Gains - Marché Stabilise",
+        "description": "Le marché consolide les gains de lundi. Volatilité diminue légèrement. Investisseurs continuent à évaluer l'impact des mesures gouvernementales.",
+        "source": "BRVM.org, 21/07",
+        "lien": "https://www.brvm.org",
+        "impact": "neutre",
+        "secteurs_affectes": ["Tous les secteurs"],
+        "actions_concernees": []
+      }
+    ],
+    "decisions_gouvernementales": [
+      {
+        "titre": "Clarifications Fiscales Gouvernementales",
+        "description": "Le ministère des finances publie les détails d'implémentation des réductions fiscales. Application progressive: 50% de réduction dès Q4 2026, 100% en 2027. Cela clarifie le timeline pour les investisseurs.",
+        "source": "Abidjan.net, 21/07",
+        "lien": "https://www.abidjan.net",
+        "impact": "positif",
+        "secteurs_affectes": ["Tous les secteurs"],
+        "actions_concernees": ["BICB", "NSBC", "SICC"]
+      }
+    ],
+    "contexte_economique": [],
+    "actualites_sectorielles": [],
+    "analyses_specifiques": {
+      "BICB": {
+        "raison": "Clarifications fiscales renforcent attrait long terme",
+        "justification": "Publication détails réductions fiscales (Abidjan.net, 21/07) clarifie timeline d'implémentation. Application progressive améliore previsibilité pour investisseurs long terme.",
+        "conseil": "À ACHETER - Renforcer position",
+        "risque": "Faible"
+      },
+      "NSBC": {
+        "raison": "Banque bénéficiaire des mesures incitatives",
+        "justification": "Clarifications fiscales renforcent cas d'investissement pour institutions financières (Abidjan.net, 21/07). Rendement 4.88% devient plus attrayant avec réductions fiscales.",
+        "conseil": "À ACHETER - Dividende attractif",
+        "risque": "Faible"
+      }
+    }
+  },
+  "2026-07-22": {
+    "date": "2026-07-22",
+    "jour": "mercredi",
+    "themes_generaux": [
+      {
+        "titre": "Secteur Bancaire Surperforme - Confiance Renouvelée",
+        "description": "Les banques continuent leur performance solide. Volumes d'échanges augmentent sur valeurs bancaires suite aux clarifications fiscales. Confiance des investisseurs institutionnels confirmée.",
+        "source": "BRVM.org, 22/07",
+        "lien": "https://www.brvm.org",
+        "impact": "positif",
+        "secteurs_affectes": ["Banques"],
+        "actions_concernees": ["BICB", "SICC", "NSBC", "BICC", "BNBC"]
+      }
+    ],
+    "decisions_gouvernementales": [],
+    "contexte_economique": [
+      {
+        "titre": "Flux de Capitaux Étrangers en Hausse",
+        "description": "Les fonds d'investissement africains et régionaux accroissent leurs allocations sur le marché ivoirien suite aux mesures de stabilisation et perspectives de croissance révisées. Entrées de capitaux estimées à +25% vs semaine précédente.",
+        "source": "Sika Finance & Financial Afrik, 22/07",
+        "lien": "https://www.sikafinance.com",
+        "impact": "positif",
+        "secteurs_affectes": ["Tous les secteurs"],
+        "actions_concernees": ["BICB", "SICC", "ECOC"]
+      }
+    ],
+    "actualites_sectorielles": [
+      {
+        "titre": "Énergie: Calendrier Appels d'Offres Confirmé",
+        "description": "La SONABEL confirme le calendrier des appels d'offres énergie renouvelable avec clôture fin août. Contrats attendus pour signature fin septembre. Excellente nouvelle pour le secteur et ECOC.",
+        "source": "Jeune Afrique, 22/07",
+        "lien": "https://www.jeuneafrique.com",
+        "impact": "positif",
+        "secteurs_affectes": ["Énergie"],
+        "actions_concernees": ["ECOC"]
+      }
+    ],
+    "analyses_specifiques": {
+      "BICB": {
+        "raison": "Momentum bancaire + entrées capitaux étrangers",
+        "justification": "Secteur bancaire surperforme avec hausse volume d'échanges (BRVM.org, 22/07). Flux capitaux étrangers en hausse (+25%) spécifiquement vers valeurs ivoiriennes (Sika Finance, 22/07). BICB principal bénéficiaire.",
+        "conseil": "À ACHETER - Accélérer positions",
+        "risque": "Faible"
+      },
+      "ECOC": {
+        "raison": "Calendrier appels d'offres renouvelable confirmé",
+        "justification": "SONABEL confirme calendrier appels d'offres avec clôture fin août (Jeune Afrique, 22/07). Contrats attendus septembre. Catalyseur important pour croissance. Flux capitaux étrangers accélèrent.",
+        "conseil": "À ACHETER - Accélérer positions",
+        "risque": "Modéré"
+      },
+      "SICC": {
+        "raison": "Secteur bancaire en phase expansion",
+        "justification": "Banques régionales bénéficient aussi du momentum général (BRVM.org, 22/07). Entrées capitaux étrangers favorisent tous les secteurs financiers.",
+        "conseil": "À ACHETER - Maintenir positions",
+        "risque": "Faible"
+      }
+    }
+  },
+  "2026-07-23": {
+    "date": "2026-07-23",
+    "jour": "jeudi",
+    "themes_generaux": [
+      {
+        "titre": "Consolidation Avant Vendredi - Prises de Bénéfices Modérées",
+        "description": "Léger profit-taking avant vendredi sur valeurs très performantes. Marché reste globalement solide. Volumes diminuent légèrement mais rester stables comparé à historique.",
+        "source": "BRVM.org, 23/07",
+        "lien": "https://www.brvm.org",
+        "impact": "neutre",
+        "secteurs_affectes": ["Tous les secteurs"],
+        "actions_concernees": []
+      }
+    ],
+    "decisions_gouvernementales": [],
+    "contexte_economique": [],
+    "actualites_sectorielles": [
+      {
+        "titre": "Telecoms: Débats Parlementaires Avancent sur Taxes",
+        "description": "Les débats parlementaires sur l'augmentation de 2% des taxes télécoms avancent. Vote prévu semaine prochaine. Incertitude diminue mais remain source de volatilité court terme.",
+        "source": "Financial Afrik, 23/07",
+        "lien": "https://www.financialafrik.com",
+        "impact": "negatif",
+        "secteurs_affectes": ["Telecoms"],
+        "actions_concernees": ["UNLC", "ORGT", "SNTS"]
+      }
+    ],
+    "analyses_specifiques": {
+      "UNLC": {
+        "raison": "Risque réglementaire reste élevé - Vote semaine prochaine",
+        "justification": "Débats parlementaires sur taxes télécoms (+2%) avancent avec vote prévu (Financial Afrik, 23/07). Incertitude crée volatilité. Impact direct sur marges UNLC important.",
+        "conseil": "À ÉVITER - Attendre après vote",
+        "risque": "Élevé"
+      },
+      "ORGT": {
+        "raison": "Secteur télécoms sous pression - Attendre clarté",
+        "justification": "Débats taxes approchent du vote (Financial Afrik, 23/07). Incertitude reste source volatilité. Mieux attendre après vote pour clarté.",
+        "conseil": "À SURVEILLER - Post-vote recommandé",
+        "risque": "Modéré à Élevé"
+      }
+    }
+  },
+  "2026-07-24": {
+    "date": "2026-07-24",
+    "jour": "vendredi",
+    "themes_generaux": [
+      {
+        "titre": "Semaine Forte - Marché Termine en Hausse",
+        "description": "Semaine caractérisée par dynamique positive suite aux mesures gouvernementales. Indice BRVM en hausse de +2.2% sur la semaine. Secteur bancaire surperformance nette. Flux capitaux étrangers confirmés.",
+        "source": "BRVM.org, 24/07",
+        "lien": "https://www.brvm.org",
+        "impact": "positif",
+        "secteurs_affectes": ["Banques", "Énergie"],
+        "actions_concernees": ["BICB", "SICC", "NSBC", "ECOC", "BICC"]
+      }
+    ],
+    "decisions_gouvernementales": [
+      {
+        "titre": "Gouvernement Annonce Plan Secteur Financier",
+        "description": "Annonce d'un plan d'appui au secteur financier pour 2026-2030 incluant recapitalisation de la BCEAO et renforcement de la supervision. Mesure de long terme très positive pour secteur bancaire ivoirien.",
+        "source": "Abidjan.net & Jeune Afrique, 24/07",
+        "lien": "https://www.abidjan.net",
+        "impact": "positif",
+        "secteurs_affectes": ["Banques"],
+        "actions_concernees": ["BICB", "SICC", "NSBC", "BICC", "BOAB", "BNBC"]
+      }
+    ],
+    "contexte_economique": [
+      {
+        "titre": "Synthèse Semaine: Croissance Économique et Investissement Boursier",
+        "description": "Semaine marquée par cascade d'annonces positives: révision PIB à la hausse (+4.5%), mesures incitatives fiscales, plans sectoriels. Confiance des investisseurs restaurée. Flux capitaux régionaux et internationaux confirmés.",
+        "source": "Jeune Afrique & Sika Finance, 24/07",
+        "lien": "https://www.jeuneafrique.com",
+        "impact": "positif",
+        "secteurs_affectes": ["Tous les secteurs"],
+        "actions_concernees": ["BICB", "SICC", "ECOC", "ETIT"]
+      }
+    ],
+    "actualites_sectorielles": [
+      {
+        "titre": "Énergie: Appels d'Offres Lancés Officiellement",
+        "description": "Publication officielle des cahiers des charges pour appels d'offres énergie renouvelable (150 MW). Période de soumission: 8 semaines. Premières contrats esperés septembre 2026.",
+        "source": "BRVM.org & Financial Afrik, 24/07",
+        "lien": "https://www.brvm.org",
+        "impact": "positif",
+        "secteurs_affectes": ["Énergie"],
+        "actions_concernees": ["ECOC"]
+      }
+    ],
+    "synthese_semaine": {
+      "titre": "Synthèse Investisseur - Semaine du 17-24 Juillet 2026",
+      "performance_generale": "Indice BRVM en hausse de +2.2% sur la semaine. Secteur bancaire +2.8%, Énergie +2.5%, Telecoms -1.2%",
+      "themes_cles": [
+        "Mesures gouvernementales incitatives (réductions fiscales) - TRÈS POSITIF",
+        "Révision croissance PIB à la hausse (+4.5%) - TRÈS POSITIF",
+        "Plan secteur financier 2026-2030 - POSITIF",
+        "Appels d'offres énergie renouvelable confirmés - POSITIF",
+        "Débats taxes télécoms (+2%) - NÉGATIF court terme"
+      ],
+      "secteurs_forts": ["Banques", "Énergie"],
+      "secteurs_faibles": ["Telecoms"],
+      "actions_cles_semaine": {
+        "meilleure": "BICB (+5.34% semaine, dividende 5.18%, momentum bancaire)",
+        "pire": "UNLC (-7.49% semaine, risque réglementaire télécoms)"
+      },
+      "recomandation_globale": "ACHETER sur valeurs bancaires et énergie. ÉVITER télécoms court terme. Contexte investissement très favorable pour long terme.",
+      "horizon": "Catalyseurs importants attendus: signature contrats énergie (septembre), vote taxes télécoms (semaine prochaine), implémentation mesures fiscales (Q4 2026)"
+    }
+  }
+}
