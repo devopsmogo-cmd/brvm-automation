@@ -1,0 +1,5 @@
+set BRVM_EMAIL=boaalexis@yahoo.fr
+set RECIPIENTS=boaalexis@gmail.com,d_alex@outlook.fr,alexis.diaponon@gmail.com
+set SMTP_PASSWORD=gtflqayrwlvdsvyq
+set SMTP_SERVER=smtp.mail.yahoo.fr
+set SMTP_PORT=465
