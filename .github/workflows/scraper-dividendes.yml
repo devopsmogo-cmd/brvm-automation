@@ -3,21 +3,21 @@ name: Scraper Dividendes
 on:
   workflow_dispatch:
   schedule:
-    - cron: '30 14 * * 1-5'  # 14h30 Lun-Ven
+    - cron: '30 14 * * 1-5'
 
 jobs:
   scraper-dividendes:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
     
-    - name: Installer dépendances
+    - name: Installer dependances
       run: |
         python -m pip install --upgrade pip
         pip install requests beautifulsoup4 lxml
@@ -25,12 +25,3 @@ jobs:
     - name: Lancer Scraper Dividendes
       run: |
         python scraper_brvm_dividendes.py
-    
-    - name: Upload données
-      uses: actions/upload-artifact@v3
-      if: always()
-      with:
-        name: brvm-dividendes-data
-        path: |
-          brvm_dividendes_historique.json
-          brvm_logs/
