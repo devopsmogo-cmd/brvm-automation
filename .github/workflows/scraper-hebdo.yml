@@ -3,7 +3,7 @@ name: Rapport Hebdomadaire
 on:
   workflow_dispatch:
   schedule:
-    - cron: '30 16 * * 5'  # 16h30 GMT Vendredi (Abidjan)
+    - cron: '30 14 * * 5'  # 14h30 GMT Vendredi → 16h30 réel Abidjan (décalage -2h)
 
 jobs:
   rapport-hebdo:
