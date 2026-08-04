@@ -3,7 +3,7 @@ name: Scraper Bulletins Cote
 on:
   workflow_dispatch:
   schedule:
-    - cron: '35 15 * * 1-5'  # 15h35 GMT (Abidjan)
+    - cron: '35 13 * * 1-5'  # 13h35 GMT → 15h35 réel Abidjan (décalage -2h)
 
 jobs:
   scraper-cote:
