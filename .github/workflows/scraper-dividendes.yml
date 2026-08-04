@@ -3,7 +3,7 @@ name: Scraper Dividendes
 on:
   workflow_dispatch:
   schedule:
-    - cron: '30 14 * * 1-5'  # 14h30 GMT (Abidjan)
+    - cron: '30 12 * * 1-5'  # 12h30 GMT → 14h30 réel Abidjan (décalage -2h)
 
 jobs:
   scraper-dividendes:
