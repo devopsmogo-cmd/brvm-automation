@@ -30,5 +30,4 @@ jobs:
         SMTP_SERVER: ${{ secrets.SMTP_SERVER }}
         SMTP_PORT: ${{ secrets.SMTP_PORT }}
       run: |
-        python automatisation_brvm_VERSIONNED_V3_FINAL_GITHUB.py
-
+        python automatisation_brvm_VERSIONNED_V3_FINAL_COMPLET.py
