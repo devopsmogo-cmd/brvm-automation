@@ -1,0 +1,28 @@
+name: Scraper Bulletins PDF
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '20 12 * * 1-5'  # 12h20 GMT → 14h20 Abidjan
+
+jobs:
+  scraper-bulletins-pdf:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Installer dependances
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests beautifulsoup4 lxml
+    
+    - name: Lancer Scraper Bulletins PDF
+      run: |
+        python scraper_brvm_bulletins_pdf.py
+
