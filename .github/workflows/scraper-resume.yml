@@ -1,0 +1,28 @@
+name: Scraper Resume Top 5 Flop 5
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '15 12 * * 1-5'  # 12h15 GMT → 14h15 Abidjan (avant les autres)
+
+jobs:
+  scraper-resume:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Installer dependances
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests beautifulsoup4 lxml
+    
+    - name: Lancer Scraper Resume
+      run: |
+        python scraper_brvm_resume.py
+
