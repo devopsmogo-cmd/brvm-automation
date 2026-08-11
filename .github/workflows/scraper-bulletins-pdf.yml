@@ -3,7 +3,7 @@ name: Scraper Bulletins PDF
 on:
   workflow_dispatch:
   schedule:
-    - cron: '20 12 * * 1-5'  # 12h20 GMT → 14h20 Abidjan
+    - cron: '35 13 * * 1-5'  # 12h20 GMT → 14h20 Abidjan
 
 jobs:
   scraper-bulletins-pdf:
