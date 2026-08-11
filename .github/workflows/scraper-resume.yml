@@ -3,7 +3,7 @@ name: Scraper Resume Top 5 Flop 5
 on:
   workflow_dispatch:
   schedule:
-    - cron: '15 12 * * 1-5'  # 12h15 GMT → 14h15 Abidjan (avant les autres)
+    - cron: '35 13 * * 1-5'  # 12h15 GMT → 14h15 Abidjan (avant les autres)
 
 jobs:
   scraper-resume:
