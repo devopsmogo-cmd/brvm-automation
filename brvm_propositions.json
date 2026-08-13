@@ -1,12 +1,77 @@
 {
   "date": "2026-08-13",
-  "heure": "23:28:12",
-  "propositions": [],
+  "heure": "23:42:53",
+  "propositions": [
+    {
+      "secteur": "Bancaire",
+      "actions": [
+        "BICC",
+        "BICB",
+        "NSBC",
+        "BOAB",
+        "ECOC"
+      ],
+      "recommandation": "ACHETER",
+      "confiance": "FORTE",
+      "sentiment": "HAUSSE",
+      "raison": "Secteur bancaire en croissance forte",
+      "source": "Madis Invest",
+      "description": "La croissance économique régionale stimule la demande de services bancaires",
+      "horizon": "court_terme",
+      "risque": "FAIBLE"
+    },
+    {
+      "secteur": "Énergie",
+      "actions": [
+        "PALM",
+        "NAPHTA"
+      ],
+      "recommandation": "VENDRE",
+      "confiance": "FORTE",
+      "sentiment": "BAISSE",
+      "raison": "Secteur énergétique sous pression",
+      "source": "Madis Invest",
+      "description": "Baisse des prix du pétrole affecte les opérateurs énergétiques",
+      "horizon": "moyen_terme",
+      "risque": "ÉLEVÉ"
+    },
+    {
+      "secteur": "Télécom",
+      "actions": [
+        "SNTS",
+        "ORGT",
+        "CIEC"
+      ],
+      "recommandation": "ACHETER",
+      "confiance": "FORTE",
+      "sentiment": "HAUSSE",
+      "raison": "Télécom: stabilité mais pas de croissance",
+      "source": "Madis Invest",
+      "description": "Les opérateurs télécom maintiennent leurs positions stables",
+      "horizon": "court_terme",
+      "risque": "FAIBLE"
+    },
+    {
+      "secteur": "Distribution",
+      "actions": [
+        "SOMDIAG",
+        "CABC"
+      ],
+      "recommandation": "ACHETER",
+      "confiance": "MOYENNE",
+      "sentiment": "HAUSSE",
+      "raison": "Distribution: opportunités identifiées",
+      "source": "Sika Finance",
+      "description": "Le secteur de la distribution offre plusieurs opportunités d'investissement",
+      "horizon": "court_terme",
+      "risque": "FAIBLE"
+    }
+  ],
   "synthese": {
-    "secteurs_a_acheter": 0,
-    "secteurs_a_vendre": 0,
+    "secteurs_a_acheter": 3,
+    "secteurs_a_vendre": 1,
     "secteurs_a_conserver": 0,
-    "actions_impactees_total": 0,
-    "total_propositions": 0
+    "actions_impactees_total": 12,
+    "total_propositions": 4
   }
 }
