@@ -1,0 +1,43 @@
+{
+  "date": "2026-08-13",
+  "heure": "13:40:00",
+  "madis_invest": [
+    {
+      "title": "Secteur bancaire en croissance forte",
+      "description": "La croissance économique régionale stimule la demande de services bancaires",
+      "source": "Madis Invest",
+      "category": "Boursière",
+      "url": "https://madisinvest.com/actualites/boursiere"
+    },
+    {
+      "title": "Secteur énergétique sous pression",
+      "description": "Baisse des prix du pétrole affecte les opérateurs énergétiques",
+      "source": "Madis Invest",
+      "category": "Secteur",
+      "url": "https://madisinvest.com/actualites/secteur"
+    },
+    {
+      "title": "Télécom: stabilité mais pas de croissance",
+      "description": "Les opérateurs télécom maintiennent leurs positions stables",
+      "source": "Madis Invest",
+      "category": "Boursière",
+      "url": "https://madisinvest.com/actualites/boursiere"
+    }
+  ],
+  "sika_finance": [
+    {
+      "title": "Services financiers en expansion",
+      "description": "Les sociétés de services financiers connaissent une période d'expansion",
+      "source": "Sika Finance",
+      "category": "BRVM",
+      "url": "https://www.sikafinance.com/bourse"
+    },
+    {
+      "title": "Distribution: opportunités identifiées",
+      "description": "Le secteur de la distribution offre plusieurs opportunités d'investissement",
+      "source": "Sika Finance",
+      "category": "BRVM",
+      "url": "https://www.sikafinance.com/marches"
+    }
+  ]
+}
