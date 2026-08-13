@@ -1,0 +1,50 @@
+name: Scraper Propositions BRVM
+
+on:
+  schedule:
+    # Lundi à Vendredi à 13h42 GMT (15h42 Abidjan)
+    # Après scraper-recommandations mais avant rapport quotidien
+    - cron: '42 13 * * 1-5'
+  
+  workflow_dispatch:
+
+jobs:
+  scraper:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          pip install --break-system-packages requests beautifulsoup4 lxml
+      
+      - name: Run Propositions Generator
+        run: python scraper_brvm_propositions.py
+      
+      - name: Auto-commit brvm_propositions.json
+        run: |
+          git config user.email "bot@brvm.local"
+          git config user.name "BRVM Automation Bot"
+          git add brvm_propositions.json
+          if git diff --cached --exit-code > /dev/null; then
+            echo "✅ No changes to commit"
+          else
+            git commit -m "🤖 Auto-update: BRVM Propositions $(date +'%Y-%m-%d %H:%M')"
+            git push origin main
+            echo "✅ Commited: brvm_propositions.json"
+          fi
+      
+      - name: View logs
+        if: always()
+        run: |
+          if [ -f propositions_*.log ]; then
+            echo "📋 Logs:"
+            cat propositions_*.log
+          fi
