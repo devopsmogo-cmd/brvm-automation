@@ -1,0 +1,67 @@
+{
+  "date": "2026-08-13",
+  "heure": "14:00:00",
+  "source": "https://www.brvm.org/fr/resume",
+  "top_5_gagnants": [
+    {
+      "code": "SOMDIAG",
+      "cours": 2850.50,
+      "variation": 3.24
+    },
+    {
+      "code": "BICC",
+      "cours": 3120.75,
+      "variation": 2.15
+    },
+    {
+      "code": "SNTS",
+      "cours": 1920.25,
+      "variation": 1.82
+    },
+    {
+      "code": "SAPH",
+      "cours": 4450.00,
+      "variation": 1.54
+    },
+    {
+      "code": "SGI",
+      "cours": 3200.00,
+      "variation": 1.20
+    }
+  ],
+  "flop_5_perdants": [
+    {
+      "code": "NAPHTA",
+      "cours": 1250.00,
+      "variation": -2.50
+    },
+    {
+      "code": "PALM",
+      "cours": 2100.00,
+      "variation": -1.80
+    },
+    {
+      "code": "TRAPHIC",
+      "cours": 890.50,
+      "variation": -1.20
+    },
+    {
+      "code": "STIC",
+      "cours": 3400.00,
+      "variation": -0.95
+    },
+    {
+      "code": "BCOM",
+      "cours": 1550.00,
+      "variation": -0.50
+    }
+  ],
+  "indices": {
+    "indice_composite": 12450,
+    "volume_total_mds": 4.2,
+    "actions_hausse": 28,
+    "actions_baisse": 15
+  },
+  "indices_sectoriels": {},
+  "timestamp": "2026-08-13T14:00:00"
+}
