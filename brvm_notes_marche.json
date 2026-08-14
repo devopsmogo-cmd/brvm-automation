@@ -1,0 +1,124 @@
+{
+  "date": "2026-08-14",
+  "heure": "00:12:12",
+  "notes": [
+    {
+      "titre": "Secteur bancaire en croissance forte",
+      "source": "Madis Invest",
+      "sentiment": "POSITIF",
+      "impact_brvm": "FORT",
+      "secteurs_beneficiaires": [
+        "Bancaire",
+        "Services"
+      ],
+      "secteurs_affectes_negativement": [],
+      "actions_impactees": [
+        "BICC",
+        "NSBC",
+        "ECOC",
+        "SEMC",
+        "BICB",
+        "BOAB",
+        "ORAC",
+        "SMBC"
+      ],
+      "probabilite": 0.72,
+      "horizon": "court_terme",
+      "risque": "FAIBLE",
+      "description": "La croissance économique régionale stimule la demande de services bancaires",
+      "synthese": "Impact positif pour Bancaire, Services. À suivre pour opportunités."
+    },
+    {
+      "titre": "Services financiers en expansion",
+      "source": "Sika Finance",
+      "sentiment": "POSITIF",
+      "impact_brvm": "FORT",
+      "secteurs_beneficiaires": [
+        "Bancaire",
+        "Services"
+      ],
+      "secteurs_affectes_negativement": [],
+      "actions_impactees": [
+        "BICC",
+        "NSBC",
+        "ECOC",
+        "SEMC",
+        "BICB",
+        "BOAB",
+        "ORAC",
+        "SMBC"
+      ],
+      "probabilite": 0.64,
+      "horizon": "court_terme",
+      "risque": "FAIBLE",
+      "description": "Les sociétés de services financiers connaissent une période d'expansion",
+      "synthese": "Impact positif pour Bancaire, Services. À suivre pour opportunités."
+    },
+    {
+      "titre": "Secteur énergétique sous pression",
+      "source": "Madis Invest",
+      "sentiment": "NÉGATIF",
+      "impact_brvm": "MOYEN",
+      "secteurs_beneficiaires": [],
+      "secteurs_affectes_negativement": [
+        "Énergie"
+      ],
+      "actions_impactees": [
+        "PALM",
+        "NAPHTA"
+      ],
+      "probabilite": 0.68,
+      "horizon": "moyen_terme",
+      "risque": "ÉLEVÉ",
+      "description": "Baisse des prix du pétrole affecte les opérateurs énergétiques",
+      "synthese": "Impact négatif pour Énergie. À surveiller."
+    },
+    {
+      "titre": "Distribution: opportunités identifiées",
+      "source": "Sika Finance",
+      "sentiment": "POSITIF",
+      "impact_brvm": "MOYEN",
+      "secteurs_beneficiaires": [
+        "Distribution"
+      ],
+      "secteurs_affectes_negativement": [],
+      "actions_impactees": [
+        "SOMDIAG",
+        "CABC"
+      ],
+      "probabilite": 0.64,
+      "horizon": "moyen_terme",
+      "risque": "FAIBLE",
+      "description": "Le secteur de la distribution offre plusieurs opportunités d'investissement",
+      "synthese": "Impact positif pour Distribution. À suivre pour opportunités."
+    },
+    {
+      "titre": "Télécom: stabilité mais pas de croissance",
+      "source": "Madis Invest",
+      "sentiment": "POSITIF",
+      "impact_brvm": "FAIBLE",
+      "secteurs_beneficiaires": [
+        "Télécom"
+      ],
+      "secteurs_affectes_negativement": [],
+      "actions_impactees": [
+        "CIEC",
+        "SNTS",
+        "ORGT"
+      ],
+      "probabilite": 0.72,
+      "horizon": "moyen_terme",
+      "risque": "FAIBLE",
+      "description": "Les opérateurs télécom maintiennent leurs positions stables",
+      "synthese": "Impact positif pour Télécom. À suivre pour opportunités."
+    }
+  ],
+  "synthese_globale": {
+    "sentiment_overall": "POSITIF",
+    "impact_overall": "FORT",
+    "risque_global": "MOYEN",
+    "notes_positives": 4,
+    "notes_negatives": 1,
+    "notes_neutres": 0
+  }
+}
