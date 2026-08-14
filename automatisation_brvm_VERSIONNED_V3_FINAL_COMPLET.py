@@ -37,6 +37,8 @@ class BRVMAutomationComplet:
         self.resume_file = os.path.join(os.path.dirname(__file__), 'brvm_resume.json')
         self.analyses_file = os.path.join(os.path.dirname(__file__), 'brvm_analyses.json')
         self.recommandations_file = os.path.join(os.path.dirname(__file__), 'brvm_recommandations.json')
+        self.propositions_file = os.path.join(os.path.dirname(__file__), 'brvm_propositions.json')
+        self.notes_marche_file = os.path.join(os.path.dirname(__file__), 'brvm_notes_marche.json')
         
         os.makedirs(self.output_dir, exist_ok=True)
         os.makedirs(self.log_dir, exist_ok=True)
@@ -48,6 +50,8 @@ class BRVMAutomationComplet:
         self.load_resume()
         self.load_analyses()
         self.load_recommandations()
+        self.load_propositions()
+        self.load_notes_marche()
         self.historique = self.load_historique()
         self.actualites = self.load_actualites()
         self.donnees_jour = self.get_donnees_jour()
@@ -152,6 +156,40 @@ class BRVMAutomationComplet:
                 self.log("⚠️ Recommandations non trouvées")
         except Exception as e:
             self.log(f"⚠️ Erreur loading recommandations: {e}")
+    
+    def load_propositions(self):
+        """Charger propositions d'investissement par secteur (Phase 1)"""
+        self.propositions = {'propositions': [], 'synthese': {}}
+        try:
+            if os.path.exists(self.propositions_file):
+                with open(self.propositions_file, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                    self.propositions = {
+                        'propositions': data.get('propositions', []),
+                        'synthese': data.get('synthese', {})
+                    }
+                self.log(f"✅ Propositions chargées: {len(self.propositions['propositions'])} propositions")
+            else:
+                self.log("⚠️ Propositions non trouvées")
+        except Exception as e:
+            self.log(f"⚠️ Erreur loading propositions: {e}")
+    
+    def load_notes_marche(self):
+        """Charger notes de marché avec impact BRVM (Phase 2)"""
+        self.notes_marche = {'notes': [], 'synthese_globale': {}}
+        try:
+            if os.path.exists(self.notes_marche_file):
+                with open(self.notes_marche_file, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                    self.notes_marche = {
+                        'notes': data.get('notes', []),
+                        'synthese_globale': data.get('synthese_globale', {})
+                    }
+                self.log(f"✅ Notes de marché chargées: {len(self.notes_marche['notes'])} notes")
+            else:
+                self.log("⚠️ Notes de marché non trouvées")
+        except Exception as e:
+            self.log(f"⚠️ Erreur loading notes marche: {e}")
     
     def calculate_dividend_metrics(self, code):
         """Calculer rendement moyen, croissance, appréciation"""
@@ -386,6 +424,82 @@ class BRVMAutomationComplet:
                 
                 recommandations_html += "</div>"
             
+            # Propositions d'investissement par secteur (PHASE 1)
+            propositions_html = ""
+            propositions = self.propositions.get('propositions', [])
+            if propositions:
+                propositions_html = "<div class='section'><div class='section-title'>🎯 Propositions d'Investissement par Secteur</div>"
+                for prop in propositions[:5]:
+                    secteur = prop.get('secteur', 'N/A')
+                    recommandation = prop.get('recommandation', 'N/A')
+                    confiance = prop.get('confiance', 'N/A')
+                    actions = prop.get('actions', [])
+                    raison = prop.get('raison', '')[:80]
+                    horizon = prop.get('horizon', '')
+                    
+                    color_rec = '#28a745' if recommandation == 'ACHETER' else '#dc3545' if recommandation == 'VENDRE' else '#ffc107'
+                    color_conf = '#28a745' if confiance == 'FORTE' else '#ffc107' if confiance == 'MOYENNE' else '#dc3545'
+                    
+                    propositions_html += f"<div style='margin: 15px 0; padding: 12px; background: #f9f9f9; border-left: 4px solid {color_rec};'>"
+                    propositions_html += f"<strong style='font-size: 14px;'>{secteur}</strong><br/>"
+                    propositions_html += f"<span style='background: {color_rec}; color: white; padding: 3px 8px; border-radius: 3px; font-size: 11px; margin-right: 8px;'>{recommandation}</span>"
+                    propositions_html += f"<span style='background: {color_conf}; color: white; padding: 3px 8px; border-radius: 3px; font-size: 11px;'>{confiance}</span><br/>"
+                    propositions_html += f"<small style='color: #666;'>{raison} | Horizon: {horizon}</small><br/>"
+                    propositions_html += f"<small><strong>Actions:</strong> {', '.join(actions[:5])}</small>"
+                    propositions_html += "</div>"
+                propositions_html += "</div>"
+            
+            # Notes de marché avec impact BRVM (PHASE 2)
+            notes_marche_html = ""
+            notes = self.notes_marche.get('notes', [])
+            synthese_global = self.notes_marche.get('synthese_globale', {})
+            if notes:
+                notes_marche_html = "<div class='section'><div class='section-title'>📰 Notes de Marché - Impact BRVM</div>"
+                
+                # Synthèse globale
+                if synthese_global:
+                    sentiment = synthese_global.get('sentiment_overall', 'NEUTRE')
+                    impact = synthese_global.get('impact_overall', 'MOYEN')
+                    risque = synthese_global.get('risque_global', 'MOYEN')
+                    
+                    color_sent = '#28a745' if sentiment == 'POSITIF' else '#dc3545' if sentiment == 'NÉGATIF' else '#ffc107'
+                    color_impact = '#28a745' if impact == 'FORT' else '#ffc107' if impact == 'MOYEN' else '#dc3545'
+                    color_risk = '#dc3545' if risque == 'ÉLEVÉ' else '#ffc107' if risque == 'MOYEN' else '#28a745'
+                    
+                    notes_marche_html += f"<div style='margin: 15px 0; padding: 12px; background: #f0f8ff; border-radius: 5px;'>"
+                    notes_marche_html += f"<strong>📊 Synthèse Globale:</strong><br/>"
+                    notes_marche_html += f"<span style='background: {color_sent}; color: white; padding: 3px 8px; border-radius: 3px; font-size: 11px; margin-right: 8px;'>Sentiment: {sentiment}</span>"
+                    notes_marche_html += f"<span style='background: {color_impact}; color: white; padding: 3px 8px; border-radius: 3px; font-size: 11px; margin-right: 8px;'>Impact: {impact}</span>"
+                    notes_marche_html += f"<span style='background: {color_risk}; color: white; padding: 3px 8px; border-radius: 3px; font-size: 11px;'>Risque: {risque}</span>"
+                    notes_marche_html += "</div>"
+                
+                # Détail des notes
+                for note in notes[:5]:
+                    titre = note.get('titre', 'N/A')[:100]
+                    sentiment = note.get('sentiment', 'NEUTRE')
+                    impact = note.get('impact_brvm', 'MOYEN')
+                    secteurs = note.get('secteurs_beneficiaires', []) + note.get('secteurs_affectes_negativement', [])
+                    actions = note.get('actions_impactees', [])
+                    probabilite = note.get('probabilite', 0)
+                    synthese = note.get('synthese', '')
+                    
+                    color_sent = '#28a745' if sentiment == 'POSITIF' else '#dc3545' if sentiment == 'NÉGATIF' else '#ffc107'
+                    color_impact = '#28a745' if impact == 'FORT' else '#ffc107' if impact == 'MOYEN' else '#dc3545'
+                    
+                    notes_marche_html += f"<div style='margin: 15px 0; padding: 12px; background: #f9f9f9; border-left: 4px solid {color_sent};'>"
+                    notes_marche_html += f"<strong>{titre}</strong><br/>"
+                    notes_marche_html += f"<span style='background: {color_sent}; color: white; padding: 2px 6px; border-radius: 3px; font-size: 10px; margin-right: 6px;'>{sentiment}</span>"
+                    notes_marche_html += f"<span style='background: {color_impact}; color: white; padding: 2px 6px; border-radius: 3px; font-size: 10px;'>{impact} impact</span><br/>"
+                    notes_marche_html += f"<small style='color: #666;'>{synthese}</small><br/>"
+                    if secteurs:
+                        notes_marche_html += f"<small><strong>Secteurs:</strong> {', '.join(secteurs[:3])}</small><br/>"
+                    if actions:
+                        notes_marche_html += f"<small><strong>Actions impactées:</strong> {', '.join(actions[:5])}</small><br/>"
+                    notes_marche_html += f"<small><strong>Probabilité:</strong> {probabilite*100:.0f}%</small>"
+                    notes_marche_html += "</div>"
+                
+                notes_marche_html += "</div>"
+            
             # Analyses trading avec recommandations
             analyses_html = ""
             if self.analyses['madis_invest']:
@@ -508,6 +622,10 @@ class BRVMAutomationComplet:
             </div>
 
             {recommandations_html}
+
+            {propositions_html}
+
+            {notes_marche_html}
 
             {analyses_html}
 
