@@ -1,0 +1,51 @@
+name: Scraper Richbourse BRVM
+
+on:
+  schedule:
+    # Lundi à Vendredi à 13h50 GMT (15h50 Abidjan)
+    # Après tous les autres scrapers mais avant rapport
+    - cron: '50 13 * * 1-5'
+  
+  workflow_dispatch:
+
+jobs:
+  scraper:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          pip install --break-system-packages requests beautifulsoup4 lxml
+      
+      - name: Run Richbourse Scraper
+        run: python scraper_brvm_richbourse.py
+      
+      - name: Auto-commit brvm_richbourse.json
+        run: |
+          git config user.email "bot@brvm.local"
+          git config user.name "BRVM Automation Bot"
+          git pull origin main --rebase
+          git add brvm_richbourse.json
+          if git diff --cached --exit-code > /dev/null; then
+            echo "✅ No changes to commit"
+          else
+            git commit -m "🤖 Auto-update: BRVM Richbourse $(date +'%Y-%m-%d %H:%M')"
+            git push origin main
+            echo "✅ Commited: brvm_richbourse.json"
+          fi
+      
+      - name: View logs
+        if: always()
+        run: |
+          if [ -f scraper_richbourse_*.log ]; then
+            echo "📋 Logs:"
+            cat scraper_richbourse_*.log
+          fi
