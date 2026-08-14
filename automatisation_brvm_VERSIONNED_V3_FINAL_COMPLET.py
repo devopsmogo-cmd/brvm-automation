@@ -36,6 +36,7 @@ class BRVMAutomationComplet:
         self.cote_file = os.path.join(os.path.dirname(__file__), 'brvm_cote_du_jour.json')
         self.resume_file = os.path.join(os.path.dirname(__file__), 'brvm_resume.json')
         self.analyses_file = os.path.join(os.path.dirname(__file__), 'brvm_analyses.json')
+        self.richbourse_file = os.path.join(os.path.dirname(__file__), 'brvm_richbourse.json')
         self.recommandations_file = os.path.join(os.path.dirname(__file__), 'brvm_recommandations.json')
         self.propositions_file = os.path.join(os.path.dirname(__file__), 'brvm_propositions.json')
         self.notes_marche_file = os.path.join(os.path.dirname(__file__), 'brvm_notes_marche.json')
@@ -50,6 +51,7 @@ class BRVMAutomationComplet:
         self.load_cote_du_jour()
         self.load_resume()
         self.load_analyses()
+        self.load_richbourse()
         self.load_recommandations()
         self.load_propositions()
         self.load_notes_marche()
@@ -138,6 +140,24 @@ class BRVMAutomationComplet:
                 self.log("⚠️ Analyses non trouvées")
         except Exception as e:
             self.log(f"⚠️ Erreur loading analyses: {e}")
+    
+    def load_richbourse(self):
+        """Charger analyses Richbourse (source supplémentaire)"""
+        self.richbourse = {'richbourse': []}
+        try:
+            if os.path.exists(self.richbourse_file):
+                with open(self.richbourse_file, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                    self.richbourse = {
+                        'richbourse': data.get('richbourse', [])[:3]
+                    }
+                self.log(f"✅ Richbourse chargé: {len(self.richbourse['richbourse'])} analyses")
+            else:
+                self.log("⚠️ Richbourse non trouvé")
+                self.richbourse = {'richbourse': []}
+        except Exception as e:
+            self.log(f"⚠️ Erreur loading richbourse: {e}")
+            self.richbourse = {'richbourse': []}
     
     def load_recommandations(self):
         """Charger recommandations intelligentes"""
@@ -610,6 +630,15 @@ class BRVMAutomationComplet:
             if self.analyses['sika_finance']:
                 analyses_html += "<div class='section'><div class='section-title'>📊 Actualités Sika Finance</div>"
                 for analyse in self.analyses['sika_finance'][:3]:
+                    title = analyse.get('title', 'N/A')[:100]
+                    desc = analyse.get('description', '')[:150]
+                    analyses_html += f"<p><strong>{title}</strong><br/><em>{desc}</em></p>"
+                analyses_html += "</div>"
+            
+            # Analyses Richbourse (nouvelle source)
+            if self.richbourse.get('richbourse'):
+                analyses_html += "<div class='section'><div class='section-title'>📊 Analyses Richbourse</div>"
+                for analyse in self.richbourse['richbourse'][:3]:
                     title = analyse.get('title', 'N/A')[:100]
                     desc = analyse.get('description', '')[:150]
                     analyses_html += f"<p><strong>{title}</strong><br/><em>{desc}</em></p>"
