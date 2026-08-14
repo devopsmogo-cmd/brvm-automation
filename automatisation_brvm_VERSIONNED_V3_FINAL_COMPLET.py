@@ -779,7 +779,8 @@ class BRVMAutomationComplet:
             
             msg.attach(MIMEText(html_content, 'html', _charset='utf-8'))
             
-            if os.path.exists(excel_file):
+            # Attachment Excel optionnel (peut être None)
+            if excel_file and os.path.exists(excel_file):
                 with open(excel_file, 'rb') as attachment:
                     part = MIMEBase('application', 'octet-stream')
                     part.set_payload(attachment.read())
@@ -788,6 +789,8 @@ class BRVMAutomationComplet:
                               f'attachment; filename="{os.path.basename(excel_file)}"')
                 msg.attach(part)
                 self.log(f"📎 Piece jointe: {os.path.basename(excel_file)}")
+            else:
+                self.log("📧 Email sans pièce jointe Excel (désactivée)")
             
             if self.smtp_port == 465:
                 context = ssl.create_default_context()
@@ -815,16 +818,16 @@ class BRVMAutomationComplet:
         self.log("\n" + "="*60)
         self.log(f"🚀 BRVM V3 FINAL COMPLET - {self.date}")
         self.log("="*60)
-        self.log(f"Données: Bulletins + Dividendes + Analyses Trading")
+        self.log(f"Données: Bulletins + Dividendes + Analyses Trading + Propositions + Mouvements")
         self.log("="*60)
         
-        excel_file = self.generate_excel()
+        # Excel génération DÉSACTIVÉE (non nécessaire)
         html_file = self.generate_html_complet()
         
-        if excel_file and html_file:
-            self.send_email(excel_file, html_file)
+        if html_file:
+            self.send_email(None, html_file)
         else:
-            self.log("❌ Impossible d'envoyer: fichiers manquants")
+            self.log("❌ Impossible d'envoyer: fichier HTML manquant")
         
         self.log("="*60)
         self.log("✅ Bulletin genere!")
