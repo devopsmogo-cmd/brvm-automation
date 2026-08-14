@@ -41,6 +41,9 @@ class BRVMRapportHebdo:
         self.load_mapping()
         self.historique = self.load_historique()
         self.actualites = self.load_actualites()
+        self.propositions = self.load_propositions()
+        self.notes_marche = self.load_notes_marche()
+        self.mouvements = self.load_mouvements()
     
     def load_config(self):
         """Charger config SMTP"""
@@ -116,6 +119,45 @@ class BRVMRapportHebdo:
         except:
             pass
         return {}
+    
+    def load_propositions(self):
+        """Charger propositions BRVM3 Phase 1"""
+        try:
+            propositions_file = os.path.join(os.path.dirname(__file__), 'brvm_propositions.json')
+            if os.path.exists(propositions_file):
+                with open(propositions_file, 'r', encoding='utf-8') as f:
+                    return json.load(f)
+        except:
+            pass
+        return {'propositions': [], 'synthese': {}}
+    
+    def load_notes_marche(self):
+        """Charger notes de marché BRVM3 Phase 2"""
+        try:
+            notes_file = os.path.join(os.path.dirname(__file__), 'brvm_notes_marche.json')
+            if os.path.exists(notes_file):
+                with open(notes_file, 'r', encoding='utf-8') as f:
+                    return json.load(f)
+        except:
+            pass
+        return {'notes': [], 'synthese_globale': {}}
+    
+    def load_mouvements(self):
+        """Charger mouvements BRVM BRVM3 Phase 3B"""
+        try:
+            mouvements_file = os.path.join(os.path.dirname(__file__), 'brvm_mouvements.json')
+            if os.path.exists(mouvements_file):
+                with open(mouvements_file, 'r', encoding='utf-8') as f:
+                    return json.load(f)
+        except:
+            pass
+        return {
+            'nouvelles_cotations': [],
+            'suspensions': [],
+            'augmentations_capital': [],
+            'fusions_acquisitions': [],
+            'synthese': {}
+        }
     
     def get_semaine_data(self):
         """Récupérer données semaine (lundi à vendredi)"""
@@ -195,6 +237,69 @@ class BRVMRapportHebdo:
             
             volume_total = sum([d.get('volume_total', 0) for d in data_semaine])
             
+            # Générer synthèse propositions (BRVM3 Phase 1)
+            propositions = self.propositions.get('propositions', [])
+            if propositions:
+                synthese_prop = self.propositions.get('synthese', {})
+                synthese_propositions_html = f"""
+                <table style="width:100%; margin: 10px 0;">
+                    <tr><th style="background: #1F4E78; color: white; padding: 8px;">Recommandation</th><th style="background: #1F4E78; color: white; padding: 8px;">Nombre</th></tr>
+                    <tr><td>ACHETER</td><td><strong>{synthese_prop.get('secteurs_a_acheter', 0)}</strong></td></tr>
+                    <tr><td>VENDRE</td><td><strong>{synthese_prop.get('secteurs_a_vendre', 0)}</strong></td></tr>
+                    <tr><td>CONSERVER</td><td><strong>{synthese_prop.get('secteurs_a_conserver', 0)}</strong></td></tr>
+                    <tr><td><strong>Actions impactées</strong></td><td><strong>{synthese_prop.get('actions_impactees_total', 0)}</strong></td></tr>
+                </table>
+                <p><strong>Top propositions:</strong></p>
+                <ul>
+                """
+                for prop in propositions[:3]:
+                    secteur = prop.get('secteur', 'N/A')
+                    rec = prop.get('recommandation', 'N/A')
+                    conf = prop.get('confiance', 'N/A')
+                    synthese_propositions_html += f"<li>{secteur}: <strong>{rec}</strong> ({conf})</li>"
+                synthese_propositions_html += "</ul>"
+            else:
+                synthese_propositions_html = "<p>Aucune proposition disponible.</p>"
+            
+            # Générer synthèse notes de marché (BRVM3 Phase 2)
+            notes = self.notes_marche.get('notes', [])
+            if notes:
+                synthese_note = self.notes_marche.get('synthese_globale', {})
+                sentiment = synthese_note.get('sentiment_overall', 'NEUTRE')
+                impact = synthese_note.get('impact_overall', 'MOYEN')
+                risque = synthese_note.get('risque_global', 'MOYEN')
+                
+                color_sent = '#28a745' if sentiment == 'POSITIF' else '#dc3545' if sentiment == 'NÉGATIF' else '#ffc107'
+                color_impact = '#28a745' if impact == 'FORT' else '#ffc107' if impact == 'MOYEN' else '#dc3545'
+                color_risk = '#dc3545' if risque == 'ÉLEVÉ' else '#ffc107' if risque == 'MOYEN' else '#28a745'
+                
+                synthese_notes_html = f"""
+                <div style="background: #f0f8ff; padding: 10px; border-radius: 5px; margin: 10px 0;">
+                    <span style="background: {color_sent}; color: white; padding: 4px 8px; border-radius: 3px; margin-right: 8px;">Sentiment: {sentiment}</span>
+                    <span style="background: {color_impact}; color: white; padding: 4px 8px; border-radius: 3px; margin-right: 8px;">Impact: {impact}</span>
+                    <span style="background: {color_risk}; color: white; padding: 4px 8px; border-radius: 3px;">Risque: {risque}</span>
+                </div>
+                <p><strong>Synthèse:</strong> {synthese_note.get('notes_positives', 0)} positives, {synthese_note.get('notes_negatives', 0)} négatives, {synthese_note.get('notes_neutres', 0)} neutres</p>
+                """
+            else:
+                synthese_notes_html = "<p>Aucune note de marché disponible.</p>"
+            
+            # Générer synthèse mouvements (BRVM3 Phase 3B)
+            synthese_mouv = self.mouvements.get('synthese', {})
+            if synthese_mouv.get('total_mouvements', 0) > 0:
+                synthese_mouvements_html = f"""
+                <table style="width:100%; margin: 10px 0;">
+                    <tr><th style="background: #1F4E78; color: white; padding: 8px;">Type de Mouvement</th><th style="background: #1F4E78; color: white; padding: 8px;">Nombre</th></tr>
+                    <tr><td>Nouvelles cotations</td><td><strong>{synthese_mouv.get('nouvelles_cotations_count', 0)}</strong></td></tr>
+                    <tr><td>Suspensions</td><td><strong>{synthese_mouv.get('suspensions_count', 0)}</strong></td></tr>
+                    <tr><td>Augmentations capital</td><td><strong>{synthese_mouv.get('augmentations_count', 0)}</strong></td></tr>
+                    <tr><td>Fusions/Acquisitions</td><td><strong>{synthese_mouv.get('fusions_count', 0)}</strong></td></tr>
+                    <tr style="background: #e8f4f8;"><td><strong>Total mouvements</strong></td><td><strong>{synthese_mouv.get('total_mouvements', 0)}</strong></td></tr>
+                </table>
+                """
+            else:
+                synthese_mouvements_html = "<p>Aucun mouvement significatif cette semaine.</p>"
+            
             html = f"""<!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -238,6 +343,24 @@ class BRVMRapportHebdo:
                         <td colspan="3"><strong>{volume_total/1e9:.2f} Mds FCFA</strong></td>
                     </tr>
                 </table>
+            </div>
+
+            <!-- SYNTHESE PROPOSITIONS SEMAINE (BRVM3 PHASE 1) -->
+            <div class="section">
+                <div class="section-title">📊 Synthèse Propositions d'Investissement - Semaine</div>
+                {synthese_propositions_html}
+            </div>
+
+            <!-- SYNTHESE NOTES DE MARCHE (BRVM3 PHASE 2) -->
+            <div class="section">
+                <div class="section-title">📰 Synthèse Notes de Marché - Semaine</div>
+                {synthese_notes_html}
+            </div>
+
+            <!-- SYNTHESE MOUVEMENTS BRVM (BRVM3 PHASE 3B) -->
+            <div class="section">
+                <div class="section-title">🔄 Mouvements BRVM - Semaine</div>
+                {synthese_mouvements_html}
             </div>
 
             <!-- THEMES SEMAINE -->
