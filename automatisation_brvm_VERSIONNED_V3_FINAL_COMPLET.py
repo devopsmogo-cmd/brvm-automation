@@ -39,6 +39,7 @@ class BRVMAutomationComplet:
         self.recommandations_file = os.path.join(os.path.dirname(__file__), 'brvm_recommandations.json')
         self.propositions_file = os.path.join(os.path.dirname(__file__), 'brvm_propositions.json')
         self.notes_marche_file = os.path.join(os.path.dirname(__file__), 'brvm_notes_marche.json')
+        self.mouvements_file = os.path.join(os.path.dirname(__file__), 'brvm_mouvements.json')
         
         os.makedirs(self.output_dir, exist_ok=True)
         os.makedirs(self.log_dir, exist_ok=True)
@@ -52,6 +53,7 @@ class BRVMAutomationComplet:
         self.load_recommandations()
         self.load_propositions()
         self.load_notes_marche()
+        self.load_mouvements()
         self.historique = self.load_historique()
         self.actualites = self.load_actualites()
         self.donnees_jour = self.get_donnees_jour()
@@ -190,6 +192,33 @@ class BRVMAutomationComplet:
                 self.log("⚠️ Notes de marché non trouvées")
         except Exception as e:
             self.log(f"⚠️ Erreur loading notes marche: {e}")
+    
+    def load_mouvements(self):
+        """Charger mouvements BRVM (Phase 3B)"""
+        self.mouvements = {
+            'nouvelles_cotations': [],
+            'suspensions': [],
+            'augmentations_capital': [],
+            'fusions_acquisitions': [],
+            'synthese': {}
+        }
+        try:
+            if os.path.exists(self.mouvements_file):
+                with open(self.mouvements_file, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                    self.mouvements = {
+                        'nouvelles_cotations': data.get('nouvelles_cotations', []),
+                        'suspensions': data.get('suspensions', []),
+                        'augmentations_capital': data.get('augmentations_capital', []),
+                        'fusions_acquisitions': data.get('fusions_acquisitions', []),
+                        'synthese': data.get('synthese', {})
+                    }
+                total = self.mouvements['synthese'].get('total_mouvements', 0)
+                self.log(f"✅ Mouvements BRVM chargés: {total} mouvements")
+            else:
+                self.log("⚠️ Mouvements BRVM non trouvés")
+        except Exception as e:
+            self.log(f"⚠️ Erreur loading mouvements: {e}")
     
     def calculate_dividend_metrics(self, code):
         """Calculer rendement moyen, croissance, appréciation"""
@@ -500,6 +529,64 @@ class BRVMAutomationComplet:
                 
                 notes_marche_html += "</div>"
             
+            # Mouvements BRVM (PHASE 3B)
+            mouvements_html = ""
+            mouvements = self.mouvements.get('mouvements', [])
+            synthese_mouv = self.mouvements.get('synthese', {})
+            if synthese_mouv.get('total_mouvements', 0) > 0:
+                mouvements_html = "<div class='section'><div class='section-title'>🔄 Mouvements BRVM</div>"
+                
+                # Nouvelles cotations
+                nouvelles = self.mouvements.get('nouvelles_cotations', [])
+                if nouvelles:
+                    mouvements_html += "<div style='margin: 15px 0;'><strong>✨ Nouvelles Cotations:</strong><table style='width:100%; margin-top: 10px;'>"
+                    mouvements_html += "<tr><th style='background: #f0f0f0; padding: 8px;'>Code</th><th style='background: #f0f0f0; padding: 8px;'>Nom</th><th style='background: #f0f0f0; padding: 8px;'>Secteur</th><th style='background: #f0f0f0; padding: 8px;'>Date</th></tr>"
+                    for new in nouvelles[:3]:
+                        code = new.get('code', 'N/A')
+                        nom = new.get('nom', 'N/A')[:50]
+                        secteur = new.get('secteur', 'N/A')
+                        date = new.get('date_cotation', 'N/A')
+                        mouvements_html += f"<tr><td style='padding: 8px;'><strong>{code}</strong></td><td style='padding: 8px;'>{nom}</td><td style='padding: 8px;'>{secteur}</td><td style='padding: 8px;'>{date}</td></tr>"
+                    mouvements_html += "</table></div>"
+                
+                # Suspensions
+                suspensions = self.mouvements.get('suspensions', [])
+                if suspensions:
+                    mouvements_html += "<div style='margin: 15px 0;'><strong>⚠️ Suspensions:</strong><table style='width:100%; margin-top: 10px;'>"
+                    mouvements_html += "<tr><th style='background: #f0f0f0; padding: 8px;'>Code</th><th style='background: #f0f0f0; padding: 8px;'>Raison</th><th style='background: #f0f0f0; padding: 8px;'>Fin</th></tr>"
+                    for susp in suspensions[:3]:
+                        code = susp.get('code', 'N/A')
+                        raison = susp.get('raison', 'N/A')[:40]
+                        fin = susp.get('date_fin', 'N/A')
+                        mouvements_html += f"<tr><td style='padding: 8px;'><strong>{code}</strong></td><td style='padding: 8px;'>{raison}</td><td style='padding: 8px;'>{fin}</td></tr>"
+                    mouvements_html += "</table></div>"
+                
+                # Augmentations capital
+                augmentations = self.mouvements.get('augmentations_capital', [])
+                if augmentations:
+                    mouvements_html += "<div style='margin: 15px 0;'><strong>💰 Augmentations Capital:</strong><table style='width:100%; margin-top: 10px;'>"
+                    mouvements_html += "<tr><th style='background: #f0f0f0; padding: 8px;'>Code</th><th style='background: #f0f0f0; padding: 8px;'>Montant (Mds FCFA)</th><th style='background: #f0f0f0; padding: 8px;'>Date</th></tr>"
+                    for aug in augmentations[:3]:
+                        code = aug.get('code', 'N/A')
+                        montant = aug.get('montant_mds_fcfa', 'N/A')
+                        date = aug.get('date_operation', 'N/A')
+                        mouvements_html += f"<tr><td style='padding: 8px;'><strong>{code}</strong></td><td style='padding: 8px;'>{montant}</td><td style='padding: 8px;'>{date}</td></tr>"
+                    mouvements_html += "</table></div>"
+                
+                # Fusions/Acquisitions
+                fusions = self.mouvements.get('fusions_acquisitions', [])
+                if fusions:
+                    mouvements_html += "<div style='margin: 15px 0;'><strong>🔗 Fusions & Acquisitions:</strong><table style='width:100%; margin-top: 10px;'>"
+                    mouvements_html += "<tr><th style='background: #f0f0f0; padding: 8px;'>Acquis</th><th style='background: #f0f0f0; padding: 8px;'>Acquireur</th><th style='background: #f0f0f0; padding: 8px;'>Date</th></tr>"
+                    for fus in fusions[:3]:
+                        code_acq = fus.get('code_acquis', 'N/A')
+                        code_acq2 = fus.get('code_acquireur', 'N/A')
+                        date = fus.get('date_operation', 'N/A')
+                        mouvements_html += f"<tr><td style='padding: 8px;'>{code_acq}</td><td style='padding: 8px;'><strong>{code_acq2}</strong></td><td style='padding: 8px;'>{date}</td></tr>"
+                    mouvements_html += "</table></div>"
+                
+                mouvements_html += "</div>"
+            
             # Analyses trading avec recommandations
             analyses_html = ""
             if self.analyses['madis_invest']:
@@ -626,6 +713,8 @@ class BRVMAutomationComplet:
             {propositions_html}
 
             {notes_marche_html}
+
+            {mouvements_html}
 
             {analyses_html}
 
