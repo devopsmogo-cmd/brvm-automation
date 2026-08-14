@@ -241,22 +241,80 @@ class BRVMRapportHebdo:
             propositions = self.propositions.get('propositions', [])
             if propositions:
                 synthese_prop = self.propositions.get('synthese', {})
+                
+                # Compter par type de recommandation
+                acheter_count = sum(1 for p in propositions if p.get('recommandation') == 'ACHETER')
+                vendre_count = sum(1 for p in propositions if p.get('recommandation') == 'VENDRE')
+                conserver_count = sum(1 for p in propositions if p.get('recommandation') == 'CONSERVER')
+                
+                # Récupérer actions par type
+                acheter_actions = []
+                vendre_actions = []
+                conserver_actions = []
+                
+                for prop in propositions:
+                    actions = prop.get('actions', [])
+                    if prop.get('recommandation') == 'ACHETER':
+                        acheter_actions.extend(actions)
+                    elif prop.get('recommandation') == 'VENDRE':
+                        vendre_actions.extend(actions)
+                    elif prop.get('recommandation') == 'CONSERVER':
+                        conserver_actions.extend(actions)
+                
+                # Supprimer doublons et limiter à 6 actions par type
+                acheter_actions = list(dict.fromkeys(acheter_actions))[:6]
+                vendre_actions = list(dict.fromkeys(vendre_actions))[:6]
+                conserver_actions = list(dict.fromkeys(conserver_actions))[:6]
+                
                 synthese_propositions_html = f"""
                 <table style="width:100%; margin: 10px 0;">
-                    <tr><th style="background: #1F4E78; color: white; padding: 8px;">Recommandation</th><th style="background: #1F4E78; color: white; padding: 8px;">Nombre</th></tr>
-                    <tr><td>ACHETER</td><td><strong>{synthese_prop.get('secteurs_a_acheter', 0)}</strong></td></tr>
-                    <tr><td>VENDRE</td><td><strong>{synthese_prop.get('secteurs_a_vendre', 0)}</strong></td></tr>
-                    <tr><td>CONSERVER</td><td><strong>{synthese_prop.get('secteurs_a_conserver', 0)}</strong></td></tr>
-                    <tr><td><strong>Actions impactées</strong></td><td><strong>{synthese_prop.get('actions_impactees_total', 0)}</strong></td></tr>
+                    <tr><th style="background: #1F4E78; color: white; padding: 8px;">Recommandation</th><th style="background: #1F4E78; color: white; padding: 8px;">Nombre</th><th style="background: #1F4E78; color: white; padding: 8px;">Actions Concernées</th></tr>
+                    <tr style="background: #e8f5e9;">
+                        <td><strong style="color: #28a745;">🟢 ACHETER</strong></td>
+                        <td><strong>{acheter_count}</strong></td>
+                        <td><strong>{", ".join(acheter_actions) if acheter_actions else "—"}</strong></td>
+                    </tr>
+                    <tr style="background: #ffebee;">
+                        <td><strong style="color: #dc3545;">🔴 VENDRE</strong></td>
+                        <td><strong>{vendre_count}</strong></td>
+                        <td><strong>{", ".join(vendre_actions) if vendre_actions else "—"}</strong></td>
+                    </tr>
+                    <tr style="background: #fff3e0;">
+                        <td><strong style="color: #ffc107;">🟡 CONSERVER</strong></td>
+                        <td><strong>{conserver_count}</strong></td>
+                        <td><strong>{", ".join(conserver_actions) if conserver_actions else "—"}</strong></td>
+                    </tr>
+                    <tr style="background: #e3f2fd;">
+                        <td><strong>Total Actions Impactées</strong></td>
+                        <td colspan="2"><strong>{synthese_prop.get('actions_impactees_total', 0)}</strong></td>
+                    </tr>
                 </table>
-                <p><strong>Top propositions:</strong></p>
-                <ul>
+                <p><strong>Détail par secteur & confiance:</strong></p>
+                <ul style="margin: 10px 0; font-size: 13px;">
                 """
-                for prop in propositions[:3]:
+                
+                # Afficher chaque proposition avec tous les détails
+                for prop in propositions[:5]:
                     secteur = prop.get('secteur', 'N/A')
                     rec = prop.get('recommandation', 'N/A')
                     conf = prop.get('confiance', 'N/A')
-                    synthese_propositions_html += f"<li>{secteur}: <strong>{rec}</strong> ({conf})</li>"
+                    actions = prop.get('actions', [])
+                    raison = prop.get('raison', '')[:60]
+                    
+                    # Couleur selon recommandation
+                    if rec == 'ACHETER':
+                        color = '#28a745'
+                        emoji = '🟢'
+                    elif rec == 'VENDRE':
+                        color = '#dc3545'
+                        emoji = '🔴'
+                    else:
+                        color = '#ffc107'
+                        emoji = '🟡'
+                    
+                    actions_str = ", ".join(actions) if actions else "—"
+                    synthese_propositions_html += f'<li>{emoji} <strong style="color: {color};">{secteur} - {rec}</strong> ({conf}) | Actions: {actions_str}<br/><small style="color: #666;">Raison: {raison}</small></li>'
+                
                 synthese_propositions_html += "</ul>"
             else:
                 synthese_propositions_html = "<p>Aucune proposition disponible.</p>"
