@@ -1,0 +1,51 @@
+name: Scraper Mouvements BRVM
+
+on:
+  schedule:
+    # Lundi à Vendredi à 13h46 GMT (15h46 Abidjan)
+    # Après scraper notes-marche mais avant rapport quotidien
+    - cron: '46 13 * * 1-5'
+  
+  workflow_dispatch:
+
+jobs:
+  scraper:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          pip install --break-system-packages requests beautifulsoup4 lxml
+      
+      - name: Run Mouvements Generator
+        run: python scraper_brvm_mouvements.py
+      
+      - name: Auto-commit brvm_mouvements.json
+        run: |
+          git config user.email "bot@brvm.local"
+          git config user.name "BRVM Automation Bot"
+          git pull origin main --rebase
+          git add brvm_mouvements.json
+          if git diff --cached --exit-code > /dev/null; then
+            echo "✅ No changes to commit"
+          else
+            git commit -m "🤖 Auto-update: BRVM Mouvements $(date +'%Y-%m-%d %H:%M')"
+            git push origin main
+            echo "✅ Commited: brvm_mouvements.json"
+          fi
+      
+      - name: View logs
+        if: always()
+        run: |
+          if [ -f mouvements_brvm_*.log ]; then
+            echo "📋 Logs:"
+            cat mouvements_brvm_*.log
+          fi
