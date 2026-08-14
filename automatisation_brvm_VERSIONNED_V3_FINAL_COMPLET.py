@@ -268,9 +268,19 @@ class BRVMAutomationComplet:
             self.log(f"⚠️ Erreur mapping: {e}")
     
     def get_action_display_name(self, code):
-        """Retourne 'CODE - NOM_COMPLET'"""
+        """Retourne 'CODE - NOM_COMPLET' - compatible ancien et nouveau format"""
         if code in self.action_names:
-            return f"{code} - {self.action_names[code]}"
+            action_data = self.action_names[code]
+            
+            # Nouveau format enrichi (dict)
+            if isinstance(action_data, dict):
+                nom = action_data.get('nom_complet', code)
+                return f"{code} - {nom}"
+            
+            # Ancien format simple (string)
+            else:
+                return f"{code} - {action_data}"
+        
         return code
     
     def get_next_version(self, filepath):
