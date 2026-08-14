@@ -1,0 +1,60 @@
+{
+  "date": "2026-08-14",
+  "heure": "22:46:34",
+  "source": "Richbourse",
+  "richbourse": [
+    {
+      "title": "BRVM: Vue d'ensemble du marché",
+      "description": "Analyse générale de la performance du marché régional",
+      "source": "Richbourse",
+      "category": "brvm_general"
+    },
+    {
+      "title": "Indices BRVM en consolidation",
+      "description": "Les indices BRVM connaissent une phase de consolidation",
+      "source": "Richbourse",
+      "category": "brvm_general"
+    },
+    {
+      "title": "Analyse: Secteur bancaire en expansion",
+      "description": "Les banques de la région affichent de bonnes perspectives",
+      "source": "Richbourse",
+      "category": "analyses"
+    },
+    {
+      "title": "Analyse: Télécom résistant",
+      "description": "Le secteur télécom démontre sa résilience face aux défis",
+      "source": "Richbourse",
+      "category": "analyses"
+    },
+    {
+      "title": "Opinion: Acheter en profitant des corrections",
+      "description": "Les experts recommandent d'acheter pendant les corrections",
+      "source": "Richbourse",
+      "category": "opinions"
+    },
+    {
+      "title": "Opinion: Diversifier le portefeuille",
+      "description": "La diversification sectorielle est recommandée",
+      "source": "Richbourse",
+      "category": "opinions"
+    },
+    {
+      "title": "Actualités BRVM: Hausse des volumes",
+      "description": "Les volumes de trading augmentent ces derniers jours",
+      "source": "Richbourse",
+      "category": "actualites"
+    },
+    {
+      "title": "Actualités: Nouvelle cotation prévue",
+      "description": "Une nouvelle entreprise devrait être cotée prochainement",
+      "source": "Richbourse",
+      "category": "actualites"
+    }
+  ],
+  "synthese": {
+    "total_analyses": 8,
+    "date": "2026-08-14",
+    "source": "Richbourse"
+  }
+}
