@@ -3,7 +3,6 @@ name: Scraper Notes Marche BRVM
 on:
   schedule:
     # Lundi à Vendredi à 13h44 GMT (15h44 Abidjan)
-    # Après scraper-propositions mais avant rapport quotidien
     - cron: '44 13 * * 1-5'
   
   workflow_dispatch:
@@ -32,9 +31,15 @@ jobs:
         run: |
           git config user.email "bot@brvm.local"
           git config user.name "BRVM Automation Bot"
-          git pull origin main --rebase
-          git add brvm_notes_marche.json
-          if git diff --cached --exit-code > /dev/null; then
+          
+          # IMPORTANT: git add AVANT git pull pour éviter "unstaged changes"
+          git add brvm_notes_marche.json || echo "File not found, skipping add"
+          
+          # Pull avec autostash pour ne pas perdre les changements
+          git pull origin main --rebase --autostash
+          
+          # Commit si des changements
+          if git diff --cached --exit-code > /dev/null 2>&1; then
             echo "✅ No changes to commit"
           else
             git commit -m "🤖 Auto-update: BRVM Notes Marche $(date +'%Y-%m-%d %H:%M')"
