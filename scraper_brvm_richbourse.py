@@ -18,10 +18,10 @@ class RichbourseScraper:
         
         # URLs Richbourse à scraper
         self.urls = {
-            'brvm_general': 'https://www.richbourse.com/brvm',
-            'analyses': 'https://www.richbourse.com/brvm/analyses',
-            'opinions': 'https://www.richbourse.com/brvm/opinions',
-            'actualites': 'https://www.richbourse.com/actualites/brvm'
+            'brvm_general': 'https://www.richbourse.com/common/variation/performance',
+            'analyses': 'https://www.richbourse.com/common/news/index',
+            'opinions': 'https://www.richbourse.com/common/dividende/index',
+            'actualites': 'https://www.richbourse.com'
         }
         
         self.analyses_data = {
