@@ -27,30 +27,29 @@ jobs:
       - name: Run Propositions Generator
         run: python scraper_brvm_propositions.py
       
-      - name: Auto-commit brvm_propositions.json
+      - name: Commit and push brvm_propositions.json
         run: |
           git config user.email "bot@brvm.local"
           git config user.name "BRVM Automation Bot"
           
-          # IMPORTANT: git add AVANT git pull pour éviter "unstaged changes"
+          # ✅ ORDRE CORRECT: Add → Commit → PULL → Push
           git add brvm_propositions.json || echo "File not found, skipping add"
           
-          # Pull avec autostash pour ne pas perdre les changements
+          # Commit avec || true pour continuer même si rien à commiter
+          git commit -m "🤖 Auto-update: BRVM Propositions $(date +'%Y-%m-%d %H:%M')" || true
+          
+          # ⭐ PULL TOUJOURS AVANT PUSH avec rebase + autostash
           git pull origin main --rebase --autostash
           
-          # Commit si des changements
-          if git diff --cached --exit-code > /dev/null 2>&1; then
-            echo "✅ No changes to commit"
-          else
-            git commit -m "🤖 Auto-update: BRVM Propositions $(date +'%Y-%m-%d %H:%M')"
-            git push origin main
-            echo "✅ Commited: brvm_propositions.json"
-          fi
+          # Push après le pull
+          git push origin main
+          
+          echo "✅ Git sync completed: brvm_propositions.json"
       
       - name: View logs
         if: always()
         run: |
           if [ -f propositions_brvm_*.log ]; then
-            echo "📋 Logs:"
+            echo "📋 Propositions Generator Logs:"
             cat propositions_brvm_*.log
           fi
