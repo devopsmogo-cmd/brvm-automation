@@ -1,6 +1,6 @@
 {
-  "date": "2026-10-30",
-  "heure": "18:52:50",
+  "date": "2026-11-02",
+  "heure": "22:28:22",
   "notes": [
     {
       "titre": "Secteur bancaire en croissance forte",
@@ -13,14 +13,14 @@
       ],
       "secteurs_affectes_negativement": [],
       "actions_impactees": [
-        "NSBC",
-        "SEMC",
-        "BOAB",
+        "ECOC",
         "BICC",
-        "ORAC",
         "BICB",
+        "SEMC",
+        "NSBC",
         "SMBC",
-        "ECOC"
+        "BOAB",
+        "ORAC"
       ],
       "probabilite": 0.72,
       "horizon": "court_terme",
@@ -39,14 +39,14 @@
       ],
       "secteurs_affectes_negativement": [],
       "actions_impactees": [
-        "NSBC",
-        "SEMC",
-        "BOAB",
+        "ECOC",
         "BICC",
-        "ORAC",
         "BICB",
+        "SEMC",
+        "NSBC",
         "SMBC",
-        "ECOC"
+        "BOAB",
+        "ORAC"
       ],
       "probabilite": 0.64,
       "horizon": "court_terme",
@@ -102,9 +102,9 @@
       ],
       "secteurs_affectes_negativement": [],
       "actions_impactees": [
-        "ORGT",
         "SNTS",
-        "CIEC"
+        "CIEC",
+        "ORGT"
       ],
       "probabilite": 0.72,
       "horizon": "moyen_terme",
