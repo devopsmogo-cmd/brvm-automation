@@ -1,22 +1,22 @@
 {
   "cote_data": {
-    "date": "2026-11-04",
-    "heure": "20:31:04",
+    "date": "2026-11-05",
+    "heure": "20:47:26",
     "source": "https://www.brvm.org/fr/bulletins-officiels-de-la-cote",
     "actions": {
       "BRVM-C": {
-        "cours": 528.49,
-        "variation": -0.17,
+        "cours": 520.2,
+        "variation": -1.57,
         "volume": ""
       },
       "BRVM-30": {
-        "cours": 256.04,
-        "variation": -0.18,
+        "cours": 251.61,
+        "variation": -1.73,
         "volume": ""
       },
       "BRVM-PRES": {
-        "cours": 198.02,
-        "variation": 0.0,
+        "cours": 193.88,
+        "variation": -2.09,
         "volume": ""
       }
     },
@@ -24,9 +24,9 @@
       "indice_composite": 0,
       "volume_total_mds": 0,
       "actions_hausse": 0,
-      "actions_baisse": 2,
+      "actions_baisse": 3,
       "nb_actions": 3
     },
-    "timestamp": "2026-11-04T20:31:04.226500"
+    "timestamp": "2026-11-05T20:47:26.811649"
   }
 }
