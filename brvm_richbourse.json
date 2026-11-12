@@ -1,6 +1,6 @@
 {
-  "date": "2026-11-10",
-  "heure": "20:37:38",
+  "date": "2026-11-12",
+  "heure": "21:09:03",
   "source": "Richbourse",
   "richbourse": [
     {
@@ -54,7 +54,7 @@
   ],
   "synthese": {
     "total_analyses": 8,
-    "date": "2026-11-10",
+    "date": "2026-11-12",
     "source": "Richbourse"
   }
 }
