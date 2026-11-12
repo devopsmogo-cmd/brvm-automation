@@ -1,6 +1,6 @@
 {
-  "date": "2026-11-10",
-  "heure": "20:36:44",
+  "date": "2026-11-12",
+  "heure": "21:07:01",
   "notes": [
     {
       "titre": "Secteur bancaire en croissance forte",
@@ -13,14 +13,14 @@
       ],
       "secteurs_affectes_negativement": [],
       "actions_impactees": [
-        "ECOC",
         "BICC",
-        "BOAB",
-        "NSBC",
-        "ORAC",
-        "BICB",
         "SEMC",
-        "SMBC"
+        "BICB",
+        "ORAC",
+        "SMBC",
+        "ECOC",
+        "BOAB",
+        "NSBC"
       ],
       "probabilite": 0.72,
       "horizon": "court_terme",
@@ -39,14 +39,14 @@
       ],
       "secteurs_affectes_negativement": [],
       "actions_impactees": [
-        "ECOC",
         "BICC",
-        "BOAB",
-        "NSBC",
-        "ORAC",
-        "BICB",
         "SEMC",
-        "SMBC"
+        "BICB",
+        "ORAC",
+        "SMBC",
+        "ECOC",
+        "BOAB",
+        "NSBC"
       ],
       "probabilite": 0.64,
       "horizon": "court_terme",
@@ -64,8 +64,8 @@
         "Énergie"
       ],
       "actions_impactees": [
-        "PALM",
-        "NAPHTA"
+        "NAPHTA",
+        "PALM"
       ],
       "probabilite": 0.68,
       "horizon": "moyen_terme",
@@ -83,8 +83,8 @@
       ],
       "secteurs_affectes_negativement": [],
       "actions_impactees": [
-        "SOMDIAG",
-        "CABC"
+        "CABC",
+        "SOMDIAG"
       ],
       "probabilite": 0.64,
       "horizon": "moyen_terme",
@@ -102,9 +102,9 @@
       ],
       "secteurs_affectes_negativement": [],
       "actions_impactees": [
-        "CIEC",
         "ORGT",
-        "SNTS"
+        "SNTS",
+        "CIEC"
       ],
       "probabilite": 0.72,
       "horizon": "moyen_terme",
